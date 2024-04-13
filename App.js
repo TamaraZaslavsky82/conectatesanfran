@@ -33,6 +33,7 @@ import rain from './rain.jpeg';
 import thunderstorm from './lightening.jpg';
 import wind from './windy.jpg';
 import clouds from './clouds.jpg';
+import CodePush from 'react-native-code-push';
 
 import ContactFormScreen from './ContactForm';
 
@@ -141,6 +142,10 @@ const AppTabs = () => {
 
 
 const App = () => {
+  const codePushOptions = {
+    checkFrequency: CodePush.CheckFrequency.ON_APP_RESUME,
+    installMode: CodePush.InstallMode.ON_NEXT_RESUME,
+  };
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -168,6 +173,7 @@ const App = () => {
     </NavigationContainer>
   );
 };
+
 const HomeScreen = ({navigation}) => {
   const [open, setOpen] = useState(false);
 const [searchQuery, setSearchQuery] = React.useState('');
@@ -505,4 +511,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default App;
+export default CodePush(codePushOptions)(App);
